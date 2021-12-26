@@ -11,10 +11,11 @@ before_action :edit_redirect_root, only: [:edit]
   end
 
   def create
-    @prototype = Prototype.create(prototype_params)
+    @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to root_path
     else
+      @prototype.save
       render "new"
     end
   end
