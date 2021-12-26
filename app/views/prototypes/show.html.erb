@@ -8,7 +8,7 @@
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
         <div class="prototype__manage">
         <% if user_signed_in? && current_user.id == @prototype.user_id %>
-          <%= link_to "編集する",  edit_prototype_path(@prototype.user_id), class: :prototype__btn %>
+          <%= link_to "編集する", edit_prototype_path(@prototype.user_id), method: :get, class: :prototype__btn %>
           <%= link_to "削除する", prototype_path(@prototype.user_id), method: :delete, class: :prototype__btn %>
         <% end %>
         </div>
@@ -50,7 +50,7 @@
               <% @comments.each do |comment| %>
                 <p>
                   <%= comment.content %> 
-                  <%= link_to comment.user.name, user_path(current_user.id), class: :comment_user %>
+                  <%= link_to comment.user.name, user_path(comment.user_id), class: :comment_user %>
                 </p>
               <% end %>
             </li>

@@ -31,11 +31,12 @@ before_action :edit_redirect_root, only: [:edit]
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    prototype.update(prototype_params)
-    if prototype.save
+    @prototype = Prototype.find(params[:id])
+    @prototype.update(prototype_params)
+    if @prototype.update(prototype_params)
       redirect_to prototype_path
     else
+      @prototype.update(prototype_params)
       render "edit"
     end
   end
